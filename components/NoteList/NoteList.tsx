@@ -27,10 +27,15 @@ export default function NoteList({ notes }: NoteListProps) {
     <ul className={css.list}>
       {notes.map(note => (
         <li key={note.id} className={css.listItem}>
-          <h2 className={css.title}>{note.title}</h2>
+          <Link href={`/notes/${note.id}`} className={css.link}>
+            <h2 className={css.title}>{note.title}</h2>
+          </Link>
+
           <p className={css.content}>{note.content}</p>
+
           <div className={css.footer}>
             <span className={css.tag}>{note.tag}</span>
+
             <button
               className={css.button}
               onClick={() => handleDelete(note.id)}

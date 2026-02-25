@@ -7,11 +7,11 @@ import { fetchNoteById } from '@/lib/api';
 import NoteDetailsClient from './NoteDetails.client';
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
-const NoteDetails = async ({ params }: Props) => {
-  const { id } = params;
+export default async function NoteDetails({ params }: Props) {
+  const { id } = await params;
 
   const queryClient = new QueryClient();
 
@@ -25,6 +25,4 @@ const NoteDetails = async ({ params }: Props) => {
       <NoteDetailsClient />
     </HydrationBoundary>
   );
-};
-
-export default NoteDetails;
+}
