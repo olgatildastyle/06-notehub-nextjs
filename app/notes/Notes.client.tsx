@@ -27,7 +27,7 @@ export default function NotesClient() {
         search: debouncedSearch,
       }),
     placeholderData: keepPreviousData,
-    staleTime: 1000 * 60, // кеш 1 хв → менше 429
+    staleTime: 1000 * 60,
   });
 
   const handlePageChange = (newPage: number) => setPage(newPage);
@@ -61,7 +61,7 @@ export default function NotesClient() {
       {isLoading && <p>Loading, please wait...</p>}
       {isError && <p>Something went wrong.</p>}
 
-      {data?.notes?.length > 0 && <NoteList notes={data.notes} />}
+      {data?.notes && data.notes.length > 0 && <NoteList notes={data.notes} />}
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <NoteForm onClose={handleCloseModal} />
